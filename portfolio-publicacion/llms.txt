@@ -1,0 +1,21 @@
+# Ico Sánchez — Portfolio
+
+> Diseño gráfico, dirección de arte y experiencias digitales.
+
+## Perfil
+
+Diseñadora gráfica y creativa digital con formación en programación e ingeniería. Trabajo entre identidad, materia e interacción.
+
+## Proyectos
+
+- [isla](./index.html#project-isla)
+- [te pienso tiemblo](./index.html#project-te-pienso-tiemblo)
+- [archivo mutuo](./index.html#project-archivo-mutuo)
+- [experimentos](./index.html#project-experimentos)
+- [post relics](./index.html#project-post-relics)
+- [un estudio sobre el tacto](./index.html#project-tacto)
+- [matadero — josef müller-brockmann](./index.html#project-brockmann)
+- [refraction proyect](./index.html#project-refraction)
+- [campo gaussiano](./index.html#project-gaussian)
+
+Refraction Proyect es un vídeo anuncio para una fiesta imaginaria. Post Relics es una reimaginación conceptual independiente.

@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#a7272c">
+  <title>Sistema plegable — Creative Coding</title>
+  <meta name="description" content="Caso de estudio interactivo de un póster plegable inspirado en Josef Müller-Brockmann.">
+  <style>
+:root{--red:#a7272c;--pink:#e7c6cf;--ink:#161616;--paper:#f4f2ed;--blue:#1648b9;--line:rgba(22,22,22,.18);font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--paper)}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;overflow-x:hidden}a{color:inherit}.nav{position:fixed;z-index:20;left:0;right:0;top:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 2.2vw;border-bottom:1px solid rgba(22,22,22,.25);background:rgba(244,242,237,.88);backdrop-filter:blur(14px)}.mark{font-weight:900;text-decoration:none;letter-spacing:-.05em}.mark span{color:var(--red);margin:0 .15em}.nav nav{display:flex;gap:2rem}.nav nav a{font-size:.76rem;text-transform:uppercase;text-decoration:none}.icon-button{border:0;background:none;font:700 .7rem Arial;cursor:pointer}.grid-lines{background-image:linear-gradient(to right,transparent calc(12.5% - 1px),rgba(167,39,44,.22) 12.5%,transparent calc(12.5% + 1px))}.hero{min-height:100svh;padding:110px 5vw 6vw;position:relative;display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:auto 1fr auto;overflow:hidden}.hero-kicker{grid-column:1/4;text-transform:uppercase;font-size:.72rem;letter-spacing:.08em}.hero h1{grid-column:1/8;align-self:center;font-size:clamp(4rem,11vw,10rem);line-height:.78;letter-spacing:-.075em;margin:4rem 0;position:relative;z-index:2}.hero h1 em{font-style:normal;color:var(--red)}.hero-copy{grid-column:6/9;max-width:27rem;font-size:clamp(1rem,1.5vw,1.35rem);line-height:1.35}.scroll-cue{grid-column:1/3;text-transform:uppercase;font-size:.76rem;text-decoration:none;align-self:end}.scroll-cue span{font-size:1.3rem;margin-left:.6rem}.hero-shape{position:absolute;width:42vw;height:42vw;right:-12vw;top:11vh;background:var(--ink);clip-path:polygon(0 0,100% 24%,34% 100%)}.section-head{display:grid;grid-template-columns:1fr 2fr 1fr;gap:3vw;border-top:1px solid;padding-top:1.25rem}.section-head>span{font-size:.7rem;text-transform:uppercase}.section-head h2{font-size:clamp(2.5rem,6vw,6rem);letter-spacing:-.06em;line-height:.9;margin:0}.section-head p{font-size:.9rem;line-height:1.4;margin:0}.object-section{padding:8rem 5vw;background:var(--pink)}.viewer{height:min(68vw,760px);display:flex;align-items:center;justify-content:center;perspective:1800px;overflow:visible}.poster-stage{position:relative;width:min(42vw,470px);height:min(59.4vw,665px);transform-style:preserve-3d;transform:rotateX(8deg) rotateZ(-2deg);filter:drop-shadow(18px 24px 22px rgba(0,0,0,.24));transition:transform .35s ease}.fold{position:absolute;left:0;width:100%;height:25%;transform-origin:top center;transform-style:preserve-3d;backface-visibility:hidden}.fold:nth-child(1){top:0}.fold:nth-child(2){top:25%}.fold:nth-child(3){top:50%}.fold:nth-child(4){top:75%}.paper{width:100%;height:100%;background-image:var(--poster);background-size:100% 400%;background-position:center var(--pos);box-shadow:inset 0 1px rgba(255,255,255,.55),inset 0 -1px rgba(0,0,0,.16);backface-visibility:hidden}.fold:nth-child(1) .paper{--pos:0%}.fold:nth-child(2) .paper{--pos:33.333%}.fold:nth-child(3) .paper{--pos:66.666%}.fold:nth-child(4) .paper{--pos:100%}.controls{display:grid;grid-template-columns:1fr 2fr;gap:3vw;align-items:end;max-width:900px;margin:0 auto}.face-switch{display:flex;gap:.5rem}.face{border:1px solid var(--ink);background:transparent;padding:.75rem 1.2rem;cursor:pointer;text-transform:uppercase;font-weight:700}.face.active{background:var(--ink);color:white}.range-label{grid-column:2;display:flex;justify-content:space-between;font-size:.72rem;text-transform:uppercase}.controls input{grid-column:2;width:100%;accent-color:var(--red)}.statement{background:var(--red);color:white;padding:12vw 5vw}.statement p{font-size:clamp(2.7rem,7vw,7.4rem);line-height:.95;letter-spacing:-.055em;margin:.1em 0}.statement p:last-child{text-align:right}.statement strong{color:var(--pink)}.lab-section{padding:8rem 5vw;background:var(--ink);color:white}.inverse{border-color:rgba(255,255,255,.4)}.lab{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:4vw;margin-top:6rem;align-items:start}.lab canvas{display:block;width:100%;height:auto;background:white}.lab-controls{position:sticky;top:100px;display:grid;gap:2.5rem}.lab-controls label{display:grid;grid-template-columns:1fr auto;gap:.7rem;text-transform:uppercase;font-size:.72rem}.lab-controls input{grid-column:1/3;width:100%;accent-color:var(--red)}.button-row{display:flex;flex-wrap:wrap;gap:.7rem}.button{padding:.9rem 1rem;border:1px solid white;text-transform:uppercase;font-weight:700;cursor:pointer}.light{background:white;color:var(--ink)}.outline{background:transparent;color:white}.process-section{padding:9rem 5vw}.timeline{list-style:none;margin:7rem 0 0;padding:0;border-top:1px solid}.timeline li{display:grid;grid-template-columns:1fr 3fr;gap:3vw;border-bottom:1px solid;padding:2rem 0;transition:padding .25s,background .25s}.timeline li:hover{padding-left:1rem;background:white}.timeline li>span{font-size:clamp(3rem,7vw,7rem);font-weight:900;color:var(--red);letter-spacing:-.06em}.timeline h3{font-size:2rem;margin:0 0 .5rem}.timeline p{max-width:38rem;line-height:1.5}.credits{min-height:85vh;background-color:var(--pink);padding:7rem 5vw;display:flex;flex-direction:column;justify-content:space-between}.credits p,.credits a{text-transform:uppercase;font-size:.72rem}.credits h2{font-size:clamp(5rem,13vw,12rem);line-height:.75;letter-spacing:-.07em;margin:3rem 0}.credits a{align-self:flex-end}@media(max-width:760px){.nav nav{display:none}.hero{grid-template-columns:repeat(4,1fr)}.hero-kicker{grid-column:1/4}.hero h1{grid-column:1/5;font-size:20vw}.hero-copy{grid-column:2/5}.hero-shape{width:70vw;height:70vw;right:-35vw}.section-head{grid-template-columns:1fr}.section-head p{max-width:28rem}.viewer{height:130vw}.poster-stage{width:74vw;height:104.6vw}.controls{grid-template-columns:1fr}.range-label,.controls input{grid-column:1}.lab{grid-template-columns:1fr}.lab-controls{position:static}.timeline li{grid-template-columns:1fr}.statement p:last-child{text-align:left}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* Hero legibility refinements */
+.hero-kicker,.hero h1,.hero-copy,.scroll-cue{position:relative;z-index:3}
+.hero-shape{z-index:1;width:34vw;height:34vw;right:-9vw;top:15vh;pointer-events:none}
+@media(max-width:760px){
+  .hero-kicker{grid-column:1/5;max-width:70%;line-height:1.35}
+  .hero h1{font-size:18.5vw;max-width:95%}
+  .hero-shape{width:42vw;height:42vw;right:-18vw;top:18vh;opacity:.92}
+}
+.model-section{padding:8rem 5vw;background:#efede7}.model-layout{display:grid;grid-template-columns:minmax(0,3fr) minmax(230px,1fr);gap:3vw;margin-top:5rem;align-items:stretch}.model-viewport{position:relative;height:min(72vw,850px);min-height:560px;overflow:hidden;background:#d9d6cf;perspective:1600px;touch-action:none;cursor:grab;display:grid;place-items:center}.model-viewport:active{cursor:grabbing}.brochure-3d{position:absolute;width:min(35vw,430px);aspect-ratio:842/1191;transform-style:preserve-3d;will-change:transform;transform:translate3d(0,0,0) rotateX(-12deg) rotateY(18deg);user-select:none}.sheet-face{position:absolute;inset:0;backface-visibility:hidden;background:white;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}.sheet-face img{display:block;width:100%;height:100%;object-fit:fill;pointer-events:none}.sheet-front{transform:translateZ(2px)}.sheet-back{transform:rotateY(180deg) translateZ(2px)}.sheet-edge{position:absolute;background:#d3cec3;backface-visibility:hidden}.edge-left{width:4px;height:100%;left:-2px;transform:rotateY(90deg)}.edge-right{width:4px;height:100%;right:-2px;transform:rotateY(90deg)}.model-shadow{position:absolute;width:min(42vw,520px);height:12%;border-radius:50%;background:rgba(0,0,0,.2);filter:blur(26px);transform:translateY(280px)}.model-hint{position:absolute;bottom:1.5rem;left:1.5rem;text-transform:uppercase;font-size:.68rem;letter-spacing:.08em;background:rgba(244,242,237,.8);padding:.65rem .8rem;transition:opacity .3s}.model-controls{border-top:1px solid;display:flex;flex-direction:column;gap:1rem;padding-top:1.2rem}.model-readout{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:.75rem 0;text-transform:uppercase;font-size:.7rem}.zoom-buttons{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}.zoom-buttons button{font-size:1.7rem;height:54px;border:1px solid;background:transparent;cursor:pointer}.model-controls .button{width:100%}.model-dark{background:var(--ink);color:white}.model-line{background:transparent;color:var(--ink);border-color:var(--ink)}.model-controls p{font-size:.76rem;line-height:1.4;margin-top:auto}
+@media(max-width:760px){.model-layout{grid-template-columns:1fr}.model-viewport{height:125vw;min-height:480px}.brochure-3d{width:58vw}.model-shadow{width:68vw;transform:translateY(38vw)}}
+
+</style>
+<meta name="description" content="Sistema editorial plegable inspirado en Josef Müller-Brockmann."><meta name="robots" content="noindex"><link rel="icon" href="../assets/favicon.svg"></head>
+<body>
+  <header class="nav">
+    <a class="mark" href="#inicio" aria-label="Inicio">IB<span>×</span>01</a>
+    <nav aria-label="Secciones">
+      <a href="#objeto">Objeto</a>
+      <a href="#visor3d">3D</a>
+      <a href="#sistema">Sistema</a>
+      <a href="#proceso">Proceso</a>
+    </nav>
+    <button id="soundToggle" class="icon-button" type="button" aria-label="Activar sonido">SND OFF</button>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero grid-lines">
+      <div class="hero-kicker">Diseño editorial / Creative coding / 2026</div>
+      <h1>Un póster<br>que cambia<br>al <em>plegarse.</em></h1>
+      <p class="hero-copy">Una investigación sobre retícula, secuencia y materia. El impreso deja de ser una superficie y se convierte en una interfaz.</p>
+      <a class="scroll-cue" href="#objeto">Explorar <span>↓</span></a>
+      <div class="hero-shape" aria-hidden="true"></div>
+    </section>
+
+    <section id="objeto" class="object-section">
+      <div class="section-head">
+        <span>01 / El objeto</span>
+        <h2>Arrastra para plegar</h2>
+        <p>Alterna las caras y mueve el control. La imagen se distribuye de forma continua sobre cuatro paneles físicos.</p>
+      </div>
+
+      <div class="viewer" id="viewer">
+        <div class="poster-stage" id="posterStage" aria-label="Póster plegable interactivo">
+          <div class="fold" data-i="0"><div class="paper"></div></div>
+          <div class="fold" data-i="1"><div class="paper"></div></div>
+          <div class="fold" data-i="2"><div class="paper"></div></div>
+          <div class="fold" data-i="3"><div class="paper"></div></div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="face-switch" role="group" aria-label="Cara del póster">
+          <button class="face active" data-face="a" type="button">Cara A</button>
+          <button class="face" data-face="b" type="button">Cara B</button>
+        </div>
+        <label class="range-label" for="foldRange"><span>Plegado</span><span id="foldValue">18%</span></label>
+        <input id="foldRange" type="range" min="0" max="100" value="18">
+      </div>
+    </section>
+
+    <section id="visor3d" class="model-section" aria-labelledby="modelTitle">
+      <div class="section-head">
+        <span>01.2 / Visor espacial</span>
+        <h2 id="modelTitle">Gira. Acerca. Lee.</h2>
+        <p>Arrastra para inspeccionar el impreso, usa la rueda para ampliar y gira 180° para descubrir la cara posterior.</p>
+      </div>
+      <div class="model-layout">
+        <div class="model-viewport" id="modelViewport">
+          <div class="model-shadow" aria-hidden="true"></div>
+          <div class="brochure-3d" id="brochure3d" role="img" aria-label="Panfleto 3D giratorio, cara A visible">
+            <div class="sheet-face sheet-front"><img src="../assets/91b1cd8ca0d2d155.png" alt="Cara A del panfleto"></div>
+            <div class="sheet-face sheet-back"><img src="../assets/f9f8ef1be5241fc8.png" alt="Cara B del panfleto"></div>
+            <div class="sheet-edge edge-left"></div>
+            <div class="sheet-edge edge-right"></div>
+          </div>
+          <div class="model-hint" id="modelHint">Arrastra para girar</div>
+        </div>
+        <aside class="model-controls" aria-label="Controles del visor 3D">
+          <div class="model-readout"><span>Rotación</span><output id="rotationOut">−12° / 18°</output></div>
+          <div class="model-readout"><span>Zoom</span><output id="modelZoomOut">100%</output></div>
+          <div class="zoom-buttons">
+            <button id="zoomOutButton" type="button" aria-label="Alejar">−</button>
+            <button id="zoomInButton" type="button" aria-label="Acercar">+</button>
+          </div>
+          <button id="flipModel" class="button model-dark" type="button">Ver cara B</button>
+          <button id="resetModel" class="button model-line" type="button">Restablecer</button>
+          <p>Amplía hasta 240% para leer y arrastra la pieza para recorrerla.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="statement">
+      <p>El pliegue no divide la composición.</p>
+      <p>Introduce <strong>tiempo</strong> en ella.</p>
+    </section>
+
+    <section id="sistema" class="lab-section">
+      <div class="section-head inverse">
+        <span>02 / Sistema generativo</span>
+        <h2>Compón tu variación</h2>
+        <p>Cada resultado nace de la misma gramática: retícula, contraste, escala y tensión geométrica.</p>
+      </div>
+
+      <div class="lab">
+        <canvas id="generator" width="1200" height="1500" aria-label="Composición generativa"></canvas>
+        <aside class="lab-controls">
+          <label>Semilla <output id="seedOut">24</output><input id="seed" type="range" min="1" max="99" value="24"></label>
+          <label>Retícula <output id="gridOut">8</output><input id="grid" type="range" min="4" max="14" value="8"></label>
+          <label>Tensión <output id="tensionOut">62</output><input id="tension" type="range" min="0" max="100" value="62"></label>
+          <label>Tipografía <output id="typeOut">78</output><input id="typeScale" type="range" min="30" max="100" value="78"></label>
+          <div class="button-row">
+            <button id="randomize" class="button light" type="button">Nueva variación</button>
+            <button id="download" class="button outline" type="button">Descargar PNG</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="proceso" class="process-section">
+      <div class="section-head">
+        <span>03 / Proceso</span>
+        <h2>Del plano al sistema</h2>
+      </div>
+      <ol class="timeline">
+        <li><span>01</span><div><h3>Archivo</h3><p>Investigación de retículas, tipografía y carteles de Josef Müller-Brockmann.</p></div></li>
+        <li><span>02</span><div><h3>Reglas</h3><p>Una paleta mínima, contraste máximo y una estructura capaz de sobrevivir al pliegue.</p></div></li>
+        <li><span>03</span><div><h3>Objeto</h3><p>Dos caras conectadas por una secuencia de cuatro estados físicos.</p></div></li>
+        <li><span>04</span><div><h3>Interfaz</h3><p>El navegador simula la materia y permite al público manipular el resultado.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="credits grid-lines">
+      <p>Proyecto de diseño editorial y código creativo</p>
+      <h2>Forma.<br>Ritmo.<br>Sistema.</h2>
+      <a href="#inicio">Volver arriba ↑</a>
+    </section>
+  </main>
+
+  <script>
+const root=document.documentElement;
+const stage=document.querySelector('#posterStage');
+const folds=[...document.querySelectorAll('.fold')];
+const range=document.querySelector('#foldRange');
+const foldValue=document.querySelector('#foldValue');
+const faces=[...document.querySelectorAll('.face')];
+const art={a:'../assets/91b1cd8ca0d2d155.png',b:'../assets/f9f8ef1be5241fc8.png'};
+
+function setFace(face){
+  root.style.setProperty('--poster',`url("${art[face]}")`);
+  faces.forEach(b=>b.classList.toggle('active',b.dataset.face===face));
+}
+function setFold(value){
+  const angle=(Number(value)/100)*66;
+  folds.forEach((fold,i)=>{
+    const direction=i%2===0?1:-1;
+    fold.style.transform=`rotateX(${direction*angle}deg) translateZ(${Math.sin(angle*Math.PI/180)*i*2}px)`;
+  });
+  stage.style.transform=`rotateX(${8-angle*.08}deg) rotateZ(-2deg) translateY(${angle*.15}px)`;
+  foldValue.textContent=`${value}%`;
+}
+faces.forEach(b=>b.addEventListener('click',()=>setFace(b.dataset.face)));
+range.addEventListener('input',e=>setFold(e.target.value));
+setFace('a');setFold(range.value);
+
+let dragging=false,startY=0,startValue=0;
+stage.addEventListener('pointerdown',e=>{dragging=true;startY=e.clientY;startValue=+range.value;stage.setPointerCapture(e.pointerId)});
+stage.addEventListener('pointermove',e=>{if(!dragging)return;range.value=Math.max(0,Math.min(100,startValue+(e.clientY-startY)*.32));setFold(range.value)});
+stage.addEventListener('pointerup',()=>dragging=false);
+
+const modelViewport=document.querySelector('#modelViewport');
+const brochure3d=document.querySelector('#brochure3d');
+const rotationOut=document.querySelector('#rotationOut');
+const modelZoomOut=document.querySelector('#modelZoomOut');
+const modelHint=document.querySelector('#modelHint');
+let modelX=-12,modelY=18,modelScale=1,modelDragging=false,modelPX=0,modelPY=0;
+function renderModel(){
+  modelX=Math.max(-75,Math.min(75,modelX));
+  modelScale=Math.max(.65,Math.min(2.4,modelScale));
+  brochure3d.style.transform=`translate3d(0,0,0) rotateX(${modelX}deg) rotateY(${modelY}deg) scale(${modelScale})`;
+  rotationOut.textContent=`${Math.round(modelX)}° / ${Math.round(((modelY%360)+360)%360)}°`;
+  modelZoomOut.textContent=`${Math.round(modelScale*100)}%`;
+  const normalized=((modelY%360)+360)%360;
+  const back=normalized>90&&normalized<270;
+  brochure3d.setAttribute('aria-label',`Panfleto 3D giratorio, cara ${back?'B':'A'} visible`);
+  document.querySelector('#flipModel').textContent=`Ver cara ${back?'A':'B'}`;
+}
+modelViewport.addEventListener('pointerdown',e=>{modelDragging=true;modelPX=e.clientX;modelPY=e.clientY;modelViewport.setPointerCapture(e.pointerId);modelHint.style.opacity='0'});
+modelViewport.addEventListener('pointermove',e=>{if(!modelDragging)return;modelY+=(e.clientX-modelPX)*.45;modelX-=(e.clientY-modelPY)*.35;modelPX=e.clientX;modelPY=e.clientY;renderModel()});
+modelViewport.addEventListener('pointerup',()=>modelDragging=false);
+modelViewport.addEventListener('pointercancel',()=>modelDragging=false);
+modelViewport.addEventListener('wheel',e=>{e.preventDefault();modelScale+=e.deltaY>0?-.09:.09;renderModel()},{passive:false});
+document.querySelector('#zoomInButton').addEventListener('click',()=>{modelScale+=.2;renderModel()});
+document.querySelector('#zoomOutButton').addEventListener('click',()=>{modelScale-=.2;renderModel()});
+document.querySelector('#flipModel').addEventListener('click',()=>{const normalized=((modelY%360)+360)%360;modelY+=180-normalized;renderModel()});
+document.querySelector('#resetModel').addEventListener('click',()=>{modelX=-12;modelY=18;modelScale=1;modelHint.style.opacity='1';renderModel()});
+renderModel();
+
+const canvas=document.querySelector('#generator');
+const ctx=canvas.getContext('2d');
+const controls={seed:document.querySelector('#seed'),grid:document.querySelector('#grid'),tension:document.querySelector('#tension'),typeScale:document.querySelector('#typeScale')};
+function random(seed){let t=seed+0x6D2B79F5;return()=>{t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296}}
+function draw(){
+  const seed=+controls.seed.value,g=+controls.grid.value,t=+controls.tension.value/100,type=+controls.typeScale.value;
+  const rnd=random(seed);ctx.clearRect(0,0,1200,1500);ctx.fillStyle='#f5f2ed';ctx.fillRect(0,0,1200,1500);
+  const cell=1200/g;ctx.strokeStyle='rgba(167,39,44,.35)';ctx.lineWidth=2;
+  for(let x=0;x<=1200;x+=cell){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,1500);ctx.stroke()}
+  for(let y=0;y<=1500;y+=cell){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(1200,y);ctx.stroke()}
+  const colors=['#161616','#a7272c','#e7c6cf'];
+  for(let i=0;i<7;i++){const x=Math.floor(rnd()*g)*cell,y=Math.floor(rnd()*(1500/cell))*cell,w=(1+Math.floor(rnd()*3))*cell,h=(1+Math.floor(rnd()*4))*cell;ctx.fillStyle=colors[Math.floor(rnd()*colors.length)];ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(Math.min(1200,x+w),y+(rnd()-.5)*h*t);ctx.lineTo(x+w*rnd(),Math.min(1500,y+h));ctx.closePath();ctx.fill()}
+  const glyph=String.fromCharCode(97+seed%8);
+  const fontSize=140+type*8;
+  ctx.save();
+  ctx.fillStyle='#161616';
+  ctx.globalAlpha=.94;
+  ctx.font=`900 ${fontSize}px Arial`;
+  ctx.textAlign='center';
+  ctx.textBaseline='middle';
+  ctx.fillText(glyph,690,890);
+  ctx.restore();
+  ctx.fillStyle='#161616';ctx.font='900 64px Arial';ctx.fillText('SISTEMA',70,100);ctx.font='28px Arial';ctx.fillText(`GRID ${g} / SEED ${String(seed).padStart(2,'0')}`,72,142);
+  ctx.fillStyle='#1648b9';ctx.font='700 24px Arial';ctx.fillText(`FORMA · RITMO · CÓDIGO / TYPE ${type}`,690,1440);
+}
+Object.entries(controls).forEach(([key,input])=>input.addEventListener('input',()=>{document.querySelector(`#${key==='typeScale'?'type':key}Out`).textContent=input.value;draw()}));
+document.querySelector('#randomize').addEventListener('click',()=>{controls.seed.value=1+Math.floor(Math.random()*99);document.querySelector('#seedOut').textContent=controls.seed.value;draw()});
+document.querySelector('#download').addEventListener('click',()=>{const a=document.createElement('a');a.download=`sistema-${controls.seed.value}.png`;a.href=canvas.toDataURL('image/png');a.click()});draw();
+
+const soundButton=document.querySelector('#soundToggle');let audioCtx=null,sound=false;
+soundButton.addEventListener('click',()=>{sound=!sound;soundButton.textContent=sound?'SND ON':'SND OFF';if(sound&&!audioCtx)audioCtx=new AudioContext()});
+document.addEventListener('pointerdown',()=>{if(!sound||!audioCtx)return;const osc=audioCtx.createOscillator(),gain=audioCtx.createGain();osc.frequency.value=160+Math.random()*180;gain.gain.setValueAtTime(.025,audioCtx.currentTime);gain.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+.08);osc.connect(gain).connect(audioCtx.destination);osc.start();osc.stop(audioCtx.currentTime+.08)});
+
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.animate([{opacity:0,transform:'translateY(32px)'},{opacity:1,transform:'translateY(0)'}],{duration:700,fill:'both',easing:'cubic-bezier(.2,.8,.2,1)'})}),{threshold:.12});
+document.querySelectorAll('.section-head,.timeline li,.statement p').forEach(el=>observer.observe(el));
+
+</script>
+</body>
+</html>
