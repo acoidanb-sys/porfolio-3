@@ -8,10 +8,6 @@ Diseñadora gráfica y creativa digital con formación en programación e ingeni
 
 ## Proyectos
 
-- [isla](https://acoidanb-sys.github.io/porfolio-3/portfolio-publicacion/#project-isla)
-- [te pienso tiemblo](https://acoidanb-sys.github.io/porfolio-3/portfolio-publicacion/#project-te-pienso-tiemblo)
-- [archivo mutuo](https://acoidanb-sys.github.io/porfolio-3/portfolio-publicacion/#project-archivo-mutuo)
-- [experimentos](https://acoidanb-sys.github.io/porfolio-3/portfolio-publicacion/#project-experimentos)
 - [post relics](https://acoidanb-sys.github.io/porfolio-3/portfolio-publicacion/#project-post-relics)
 - [un estudio sobre el tacto](https://acoidanb-sys.github.io/porfolio-3/portfolio-publicacion/#project-tacto)
 - [matadero — josef müller-brockmann](https://acoidanb-sys.github.io/porfolio-3/portfolio-publicacion/#project-brockmann)
